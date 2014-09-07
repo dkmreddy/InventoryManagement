@@ -5,4 +5,4 @@ Created on Sep 6, 2014
 '''
 from django.http.response import HttpResponse
 def home(request):
-    return  HttpResponse("output")
+    return  HttpResponse("HomePage")

@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'InventoryManagement.views.home', name='home'),
     url(r'^Garments/',include('garments.urls')),
+    url(r'^Lighting/',include('lighting.urls')),
     # url(r'^InventoryManagement/', include('InventoryManagement.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     #for the base functionality
     url(r'^$', 'InventoryManagement.views.home', name='home'),
-    
+    url(r'^SubmitLogin/$','InventoryManagement.views.LoginApprove',name='login_function'),
     
     #all the urls for the Garments App
     url(r'^Garments/',include('garments.urls')),

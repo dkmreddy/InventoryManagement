@@ -6,11 +6,25 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
+    #for the base functionality
     url(r'^$', 'InventoryManagement.views.home', name='home'),
+    
+    
+    #all the urls for the Garments App
     url(r'^Garments/',include('garments.urls')),
+    
+    #all the urls for the Lighting App
     url(r'^Lighting/',include('lighting.urls')),
+    
+    #all the urls for the groceries App
     url(r'^Groceries/',include('groceries.urls')),
+    
+    #all the urls for the drinks App
     url(r'^Drinks/',include('drinks.urls')),
+    
+    
+    
+    
     # url(r'^InventoryManagement/', include('InventoryManagement.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

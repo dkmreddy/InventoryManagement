@@ -22,6 +22,8 @@ urlpatterns = patterns('',
     #all the urls for the drinks App
     url(r'^Drinks/',include('drinks.urls')),
     
+    #all the urls for the Admin app
+    url(r'^Admin/',include('admin.urls')),
     
     
     

@@ -37,4 +37,4 @@ def PassMessasge(sModuleInfo,msg,level,debug=True):
 
 def getfileInfo(path):
     path=path.split("\\")
-    return path[-2]+"/"+path[-1]
+    return path[-2]+"/"+path[-1]+" : "

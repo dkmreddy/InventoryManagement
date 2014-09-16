@@ -1,4 +1,4 @@
 from django.shortcuts import render_to_response
 
 def home(request):
-    return render_to_response('garments/BaseTemplateForGarments.html',{})
+    return render_to_response('garments/Home.html',{})

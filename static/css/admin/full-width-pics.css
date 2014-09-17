@@ -62,3 +62,23 @@ footer {
         font-size: 2em;
     }
 }
+
+.grid {
+	margin-left:18px;
+	width:258px;
+	height:198px;
+    text-align: center;
+    /*text-shadow: white;*/
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+    
+  background: -webkit-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* W3C */
+        
+    /*border: 1px #000 solid grey;*/
+    font-family: "Segoe UI",Helvetica,Arial,sans-serif;
+	
+
+}

@@ -5,6 +5,8 @@
 {% block content %}
 
 
+{% load staticfiles %}
+
 <article>
 
 <!-- Page Content -->
@@ -16,10 +18,13 @@
                 <h1 class="page-header">Welcome, Admin!</h1>
             </div>
 
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="/Admin/AddUser/">
-				Add New User
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="Add New User">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb grid">
+				<br><br>
+				<img src="{% static 'images/add_user.png' %}" alt="Add New User" style="width:40px;height:40px;">
+				<br><br>
+                <a href="{% url 'admin.views.AddUser' %}">
+				<h2>Add New User</h2>
+                    <!--img class="img-responsive" src="http://placehold.it/400x300" alt="Add New User"-->
                 </a>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">

@@ -1,0 +1,28 @@
+{% extends "admin/BaseTemplateForAdmin.html" %}
+
+{% block title%}List All - Admin{% endblock %}
+
+{% block content %}
+<article>
+    <div align="center" style="margin:auto">
+        <table width="100%" align="center">
+            <thead>
+                <tr>
+                    {% for x in column %}
+                    <td><b>{{x}}</b></td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in user_list %}
+                    <tr>
+                        {% for y in x %}
+                            <td>{{y}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</article>
+{% endblock %}

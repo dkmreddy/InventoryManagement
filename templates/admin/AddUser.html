@@ -3,7 +3,23 @@
 {% block title%}Add User - Admin{% endblock %}
 
 {% block content %}
-
+<script type="text/javascript">
+function checkValue(){
+    var full_name=document.forms["user_input_form"]["InputFullName"].value;
+    var email=document.forms["user_input_form"]["InputEmail"].value;
+    var user_name=document.forms["user_input_form"]["InputUserName"].value;
+    var password=document.forms["user_input_form"]["InputPassword"].value;
+    var section=document.forms["user_input_form"]["InputSection"].value;
+    var message=full_name+'<br>'+email+'<br>'+user_name+'<br>'+section+'<br>'+password;
+    if(full_name==""|| user_name==""||password==""||section==""){
+        alert('Please Check the input field');
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+</script>
 
 <article>
 <!--{% load staticfiles %}
@@ -20,7 +36,8 @@
 <!-- Registration form - START -->
 <div class="container">
     <div class="row">
-        <form role="form">
+        <form name="user_input_form" role="form" action ="{% url 'admin.views.enlist_new_user' %}" onsubmit="return checkValue();" method="post">
+            {%csrf_token%}
             <div class="col-lg-6">
                 <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
                 <div class="form-group">
@@ -30,13 +47,13 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
-                <!--div class="form-group">
+                <div class="form-group">
                     <label for="InputEmail">Enter Email</label>
                     <div class="input-group">
                         <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Enter Email" required>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
-                </div-->
+                </div>
                 <div class="form-group">
                     <label for="InputUserName">Enter User Name</label>
                     <div class="input-group">
@@ -55,11 +72,12 @@
                     <label for="InputSection">Choose Section</label>
                     <div class="input-group">
                         <select type="text" class="form-control" id="InputSection" name="InputSection" required>
-							<option>Choose Section</option>
-							<option>Garments</option>
-							<option>Drinks</option>
-							<option>Groceries</option>
-							<option>Lighting</option>
+							<option value="">Choose Section</option>
+							<option value="C">Garments</option>
+							<option value="D">Drinks</option>
+							<option value="G">Groceries</option>
+							<option value="L">Lighting</option>
+							<option value="A">Admin</option>
 						</select>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
@@ -70,7 +88,7 @@
         </form>
 		
         <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12">
+            <div class="col-md-12" style="display:none;">
                 <div class="alert alert-success">
                     <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
                 </div>

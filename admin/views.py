@@ -66,7 +66,10 @@ def ListUser(request):
     all_users=user_business_map.objects.select_related('user_id')
     final_list=[]
     for x in all_users:
-        final_list.append((x.user.first_name,x.user.email,x.get_category_display(),x.user.date_joined.date()))
+        if x.is_staff:
+            final_list.append((x.user.first_name,x.user.email,"Manager",x.get_category_display(),x.user.date_joined.date()))
+        else:
+            final_list.append((x.user.first_name,x.user.email,"Employee",x.get_category_display(),x.user.date_joined.date()))
     #print final_list
     column=['Full Name','Email','Section','Date Registerd']
     return render_to_response('admin/ListAllUser.html',{'user_list':final_list,'column':column})          

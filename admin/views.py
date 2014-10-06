@@ -3,7 +3,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.contrib.auth.models import User
-from admin.models import user_business_map
+from admin.models import user_business_map, exec_log
 from Logging.LogModule import PassMessasge,getfileInfo,error_flag,info_flag,warning_flag
 import inspect
 import os
@@ -32,7 +32,7 @@ def enlist_new_user(request):
         temp_user.email=request.POST['InputEmail']
         temp_user.set_password(request.POST['InputPassword'])
         temp_user.date_joined=current_date_time
-        if request.POST['InputSection']=='A':
+        if request.POST['InputSection']=='A' and request.POST['InputRole']=='M':
             temp_user.is_staff=True
         temp_user.save()
         PassMessasge(sModuleInfo, "Info for user %s:%s is enlisted in auth_user"%(request.POST['InputFullName'],request.POST['InputUserName']),info_flag)
@@ -42,9 +42,20 @@ def enlist_new_user(request):
         business_map=user_business_map()
         business_map.user=current_user_id
         business_map.category=request.POST['InputSection']
+        if request.POST['InputRole']=='M':
+            business_map.is_staff=True
+        if request.POST['InputRole']=='E':
+            business_map.is_staff=False
         business_map.save()
+        if request.user.is_authenticated():
+            execlog=exec_log()
+            execlog.user=request.user
+            execlog.section=request.POST['InputSection']
+            execlog.action="Registered"
+            execlog.detail="User %s: Full Name:%s"%(request.POST['InputUserName'],request.POST['InputFullName'])
+            execlog.save()
         PassMessasge(sModuleInfo, "Assiging the business setting for user %s:%s"%(request.POST['InputFullName'],request.POST['InputUserName']), info_flag)
-        return HttpResponseRedirect(reverse('admin.views.AddUser'))
+        return HttpResponseRedirect(reverse('admin.views.ListUser'))
     else:
         PassMessasge(sModuleInfo, "Registration for user %s:%s is to be a POST request"%(request.POST['InputFullName'],request.POST['InputUserName']), error_flag)
         return HttpResponseRedirect(reverse('admin.views.AddUser'))  

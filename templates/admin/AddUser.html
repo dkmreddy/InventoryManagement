@@ -9,10 +9,16 @@ function checkValue(){
     var email=document.forms["user_input_form"]["InputEmail"].value;
     var user_name=document.forms["user_input_form"]["InputUserName"].value;
     var password=document.forms["user_input_form"]["InputPassword"].value;
+    var re_password=document.forms["user_input_form"]["ReInputPassword"].value;
+    if (password!=re_password){
+        alertify.error("Password does not match.",1500);
+        return false;
+    }
     var section=document.forms["user_input_form"]["InputSection"].value;
+    var role=document.forms["user_input_form"]["InputRole"].value;
     var message=full_name+'<br>'+email+'<br>'+user_name+'<br>'+section+'<br>'+password;
-    if(full_name==""|| user_name==""||password==""||section==""){
-        alert('Please Check the input field');
+    if(full_name==""|| user_name==""||password==""||section==""||role==""){
+        alertify.error('Incomplete input field',1500);
         return false;
     }
     else{
@@ -68,6 +74,13 @@ function checkValue(){
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="ReInputPassword">Enter Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="ReInputPassword" name="ReInputPassword" placeholder="Enter Password Again" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
 				<div class="form-group">
                     <label for="InputSection">Choose Section</label>
                     <div class="input-group">
@@ -82,8 +95,19 @@ function checkValue(){
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="InputRole">Choose Role</label>
+                    <div class="input-group">
+                        <select type="text" class="form-control" id="InputRole" name="InputRole" required>
+                            <option value="">Choose Role</option>
+                            <option value="M">Manager</option>
+                            <option value="E">Employee</option>
+                        </select>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                </div>
 				
-                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                <input type="submit" name="submit" id="submit" value="Submit" onsubmit="return checkValue();" class="btn btn-info pull-right">
             </div>
         </form>
 		

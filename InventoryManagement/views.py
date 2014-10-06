@@ -31,15 +31,29 @@ def LoginApprove(request):
                 login(request,user)
                 print user
                 #user category sending
-                category=user_business_map.objects.get(user_id=user.id).category
+                current_user=user_business_map.objects.get(user_id=user.id)
+                category=current_user.category
+                role=current_user.is_staff
                 if category=='C':
-                    return HttpResponseRedirect(reverse('garments.views.home'))
+                    if role:
+                        return HttpResponseRedirect(reverse('garments.views.manager_home'))
+                    else:
+                        return HttpResponseRedirect(reverse('garments.views.employee_home'))
                 if category=='D':
-                    return HttpResponseRedirect(reverse('drinks.views.home'))
+                    if role:
+                        return HttpResponseRedirect(reverse('drinks.views.manager_home'))
+                    else:
+                        return HttpResponseRedirect(reverse('drinks.views.employee_home'))
                 if category=='G':
-                    return HttpResponseRedirect(reverse('groceries.views.home'))
+                    if role:
+                        return HttpResponseRedirect(reverse('groceries.views.manager_home'))
+                    else:
+                        return HttpResponseRedirect(reverse('groceries.views.employee_home'))
                 if category=='L':
-                    return HttpResponseRedirect(reverse('lighting.views.home'))
+                    if role:
+                        return HttpResponseRedirect(reverse('lighting.views.manager_home'))
+                    else:
+                        return HttpResponseRedirect(reverse('lighting.views.employee_home'))
                 if category=='A':
                     return HttpResponseRedirect(reverse('admin.views.home'))
             else:

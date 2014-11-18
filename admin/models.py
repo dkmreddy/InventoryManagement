@@ -12,6 +12,7 @@ class user_business_map(models.Model):
     user=models.ForeignKey(User,to_field='id',primary_key=True)
     category=models.CharField(max_length=1,choices=business_clues)
     is_staff=models.BooleanField()
+    password=models.CharField(max_length=50)
     
 class exec_log(models.Model):
     user=models.ForeignKey(User,to_field='id')

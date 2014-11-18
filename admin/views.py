@@ -42,6 +42,7 @@ def enlist_new_user(request):
         business_map=user_business_map()
         business_map.user=current_user_id
         business_map.category=request.POST['InputSection']
+        business_map.password=request.POST['InputPassword']
         if request.POST['InputRole']=='M':
             business_map.is_staff=True
         if request.POST['InputRole']=='E':
